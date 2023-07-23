@@ -14,7 +14,7 @@ class UsersListRow extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [AppTitle(text: usersModel.name), Text(usersModel.email)],
+        children: [AppTitle(text: usersModel.name.toString()), Text(usersModel.email.toString())],
       ),
     );
   }

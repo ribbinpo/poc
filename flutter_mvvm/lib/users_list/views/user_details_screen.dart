@@ -12,7 +12,7 @@ class UserDetailsScreen extends StatelessWidget {
     UsersViewModel usersViewModel = context.watch<UsersViewModel>();
     return Scaffold(
       appBar: AppBar(
-        title: Text(usersViewModel.selectedUser!.name),
+        title: Text(usersViewModel.selectedUser.name.toString()),
       ),
       body: Container(
         padding: const EdgeInsets.all(20.0),
@@ -20,8 +20,8 @@ class UserDetailsScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AppTitle(text: usersViewModel.selectedUser!.name),
-              Text(usersViewModel.selectedUser!.email)
+              AppTitle(text: usersViewModel.selectedUser.name.toString()),
+              Text(usersViewModel.selectedUser.email.toString())
             ]),
       ),
     );

@@ -8,14 +8,14 @@ class UsersViewModel extends ChangeNotifier {
   bool _loading = false;
   List<UsersModel> _userListModel = [];
   UsersError? _userError;
-  UsersModel? _selectedUser;
-  UsersModel? _addingUser;
+  UsersModel _selectedUser = UsersModel();
+  UsersModel _addingUser = UsersModel();
 
   bool get loading => _loading;
   List<UsersModel> get userListModel => _userListModel;
   UsersError? get userError => _userError;
-  UsersModel? get selectedUser => _selectedUser;
-  UsersModel? get addingUser => _addingUser;
+  UsersModel get selectedUser => _selectedUser;
+  UsersModel get addingUser => _addingUser;
 
   // Constructor
   UsersViewModel() {
@@ -39,26 +39,27 @@ class UsersViewModel extends ChangeNotifier {
     _selectedUser = usersModel;
   }
 
-  Future addUser() async {
+  Future<bool> addUser() async {
     if (!isValid()) {
-      return;
+      return false;
     }
-    _userListModel.add(addingUser!);
-    // _addingUser = UsersModel();
+    _userListModel.add(addingUser);
+    _addingUser = UsersModel();
     notifyListeners();
     return true;
   }
 
-  isValid() async {
-    if (addingUser!.name == null || addingUser!.name.isEmpty) {
+  bool isValid() {
+    if (addingUser.name == null || addingUser.name!.isEmpty) {
       return false;
     }
-    if (addingUser!.email == null || addingUser!.email.isEmpty) {
+    if (addingUser.email == null || addingUser.email!.isEmpty) {
       return false;
     }
+    return true;
   }
 
-  Future getUsers() async {
+  Future<void> getUsers() async {
     setLoading(true);
     var response = await UsersService.getUsers();
     if (response is Success) {

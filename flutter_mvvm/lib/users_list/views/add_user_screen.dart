@@ -15,7 +15,7 @@ class AddUserScreen extends StatelessWidget {
           IconButton(
               onPressed: () async {
                 bool userAdded = await usersViewModel.addUser();
-                if (userAdded) {
+                if (!userAdded) {
                   return;
                 }
                 Navigator.pop(context);
@@ -30,13 +30,13 @@ class AddUserScreen extends StatelessWidget {
             TextFormField(
               decoration: const InputDecoration(hintText: 'Name'),
               onChanged: (val) async {
-                usersViewModel.addingUser!.name = val;
+                usersViewModel.addingUser.name = val;
               },
             ),
             TextFormField(
               decoration: const InputDecoration(hintText: 'Email'),
               onChanged: (val) async {
-                usersViewModel.addingUser!.email = val;
+                usersViewModel.addingUser.email = val;
               },
             ),
           ],
