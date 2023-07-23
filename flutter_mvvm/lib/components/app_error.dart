@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppError extends StatelessWidget {
@@ -8,7 +7,7 @@ class AppError extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible: null!=errorText && errorText.isNotEmpty,
+      visible: errorText.isNotEmpty,
       child: Container(
         padding: const EdgeInsets.all(20),
         child: Text(
