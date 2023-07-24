@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mvvm/users_list/views/home_screen.dart';
 import 'package:flutter_mvvm/users_list/view_models/users_view_model.dart';
+import 'package:flutter_mvvm/views/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
           ),
           // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-          home: const HomeScreen(),
+          home: const SplashScreen(),
         ));
   }
 }
