@@ -36,3 +36,6 @@ lerna-debug.log*
 
 # ENV
 .env
+
+# data persist from docker
+mongo_db
