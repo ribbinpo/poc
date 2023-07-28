@@ -59,20 +59,16 @@ class UsersViewModel extends _$UsersViewModel {
   }
 
   Future<List<UsersModel>> getUsers() async {
-    setLoading(true);
-    final response = await UsersService.getUsers();
-    if (response is Success) {
-      setLoading(false);
-      return response.response as List<UsersModel>;
+    final response = await UsersService.getUsersN();
+    final res = switch (response) {
+      SuccessN(value: final data) => data,
+      FailureN(exception: final exception) =>
+        "something when wrong: $exception",
+    };
+    if (response is SuccessN) {
+      return res as List<UsersModel>;
     }
-    if (response is Failure) {
-      UsersError userError = UsersError(
-        code: response.code,
-        message: response.errorResponse,
-      );
-      setUserError(userError);
-    }
-    setLoading(false);
+    if (response is FailureN) {}
     return [];
   }
 }

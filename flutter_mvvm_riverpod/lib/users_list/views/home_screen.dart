@@ -37,35 +37,24 @@ class HomeScreen extends ConsumerWidget {
     UsersViewModel usersViewModel =
         ref.read<UsersViewModel>(usersViewModelProvider.notifier);
     final usersModel = ref.watch(usersViewModelProvider);
-    print(usersModel);
-    if (usersViewModel.loading) {
-      return const AppLoading();
-    }
-    if (usersViewModel.userError != null) {
-      return AppError(
-        errorText: usersViewModel.userError.toString(),
-      );
-    }
     return Expanded(
-        child: usersModel.when(
-            data: (users) => ListView.separated(
-                itemBuilder: (context, index) {
-                  UsersModel _usersModel = users[index];
-                  return UsersListRow(
-                    usersModel: _usersModel,
-                    onTap: () async {
-                      usersViewModel.setSelectedUser(_usersModel);
-                      openUserDetails(context);
-                    },
-                  );
-                },
-                separatorBuilder: (context, index) => const Divider(),
-                itemCount: users.length),
-            error: (Object error, StackTrace stackTrace) =>
-              Text("Error: $error",
-                  style: const TextStyle(color: Colors.white, fontSize: 15))
-            ,
-            loading: () => const Center(
-                child: CircularProgressIndicator(color: Colors.blue))));
+      child: usersModel.when(
+          data: (users) => ListView.separated(
+              itemBuilder: (context, index) {
+                UsersModel _usersModel = users[index];
+                return UsersListRow(
+                  usersModel: _usersModel,
+                  onTap: () async {
+                    usersViewModel.setSelectedUser(_usersModel);
+                    openUserDetails(context);
+                  },
+                );
+              },
+              separatorBuilder: (context, index) => const Divider(),
+              itemCount: users.length),
+          error: (Object error, StackTrace stackTrace) => Text("Error: $error",
+              style: const TextStyle(color: Colors.white, fontSize: 15)),
+          loading: () => const AppLoading()),
+    );
   }
 }
