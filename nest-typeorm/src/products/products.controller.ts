@@ -27,7 +27,7 @@ export class ProductsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.productsService.findOne(+id);
+    return this.productsService.findOne(id);
   }
 
   @Patch(':id')
@@ -38,5 +38,28 @@ export class ProductsController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.productsService.remove(+id);
+  }
+
+  @Patch('tags/add/:productId')
+  addTags(
+    @Param('productId') productId: string,
+    @Body() body: { tagId: string },
+  ) {
+    const { tagId } = body;
+    return this.productsService.addTags(productId, tagId);
+  }
+
+  @Patch('tags/remove/:productId')
+  removeTags(
+    @Param('productId') productId: string,
+    @Body() body: { tagId: string },
+  ) {
+    const { tagId } = body;
+    return this.productsService.removeTags(productId, tagId);
+  }
+
+  @Get('tags/:id')
+  getTags(@Param('id') id: string) {
+    return this.productsService.getTags(id);
   }
 }

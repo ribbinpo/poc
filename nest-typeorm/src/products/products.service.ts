@@ -12,16 +12,20 @@ export class ProductsService {
   ) {}
 
   async create(createProductDto: CreateProductDto): Promise<Product> {
-    const createdProduct = new this.productModel(createProductDto);
-    return createdProduct.save();
+    try {
+      const createdProduct = new this.productModel(createProductDto);
+      return createdProduct.save();
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   async findAll(): Promise<Product[]> {
     return this.productModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} product`;
+  findOne(id: string) {
+    return this.productModel.findById(id);
   }
 
   update(id: number, updateProductDto: UpdateProductDto) {
@@ -30,5 +34,26 @@ export class ProductsService {
 
   remove(id: number) {
     return `This action removes a #${id} product`;
+  }
+
+  addTags(productId: string, tagId: string) {
+    return this.productModel.findByIdAndUpdate(
+      productId,
+      { $addToSet: { tag: tagId } },
+      { new: true },
+    );
+  }
+
+  removeTags(productId: string, tagId: string) {
+    return this.productModel.findByIdAndUpdate(
+      productId,
+      { $pull: { tag: tagId } },
+      { new: true },
+    );
+  }
+
+  async getTags(productId: string) {
+    const product = await this.findOne(productId).populate('tag');
+    return product.tag;
   }
 }
