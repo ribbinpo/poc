@@ -21,39 +21,43 @@ export class ProductsService {
   }
 
   async findAll(): Promise<Product[]> {
-    return this.productModel.find().exec();
+    return await this.productModel.find().exec();
   }
 
-  findOne(id: string) {
-    return this.productModel.findById(id);
+  async findOne(id: string) {
+    return await this.productModel.findById(id).exec();
   }
 
-  update(id: number, updateProductDto: UpdateProductDto) {
-    return `This action updates a #${id} product`;
+  update(id: string, updateProductDto: UpdateProductDto) {
+    return this.productModel
+      .updateOne({ _id: id }, updateProductDto, {
+        upsert: true,
+      })
+      .exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} product`;
+  remove(id: string) {
+    return this.productModel.findByIdAndRemove(id).exec();
   }
 
   addTags(productId: string, tagId: string) {
-    return this.productModel.findByIdAndUpdate(
-      productId,
-      { $addToSet: { tag: tagId } },
-      { new: true },
-    );
+    return this.productModel
+      .findByIdAndUpdate(
+        productId,
+        { $addToSet: { tag: tagId } },
+        { new: true },
+      )
+      .exec();
   }
 
   removeTags(productId: string, tagId: string) {
-    return this.productModel.findByIdAndUpdate(
-      productId,
-      { $pull: { tag: tagId } },
-      { new: true },
-    );
+    return this.productModel
+      .findByIdAndUpdate(productId, { $pull: { tag: tagId } }, { new: true })
+      .exec();
   }
 
   async getTags(productId: string) {
-    const product = await this.findOne(productId).populate('tag');
+    const product = await (await this.findOne(productId)).populate('tag');
     return product.tag;
   }
 }
