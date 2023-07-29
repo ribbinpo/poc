@@ -12,7 +12,7 @@ import { MongooseModule } from '@nestjs/mongoose';
         configService.get('database') || {},
     }),
     MongooseModule.forRootAsync({
-      connectionName: 'test',
+      connectionName: 'products',
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
