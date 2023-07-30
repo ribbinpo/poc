@@ -1,16 +1,6 @@
-# if using mongo version 6 or newer
-# change mongo to mongosh
-mongo -- "$MONGO_INITDB_DATABASE" <<EOF
+mongosh -u "$MONGO_INITDB_ROOT_USERNAME" -p "$MONGO_INITDB_ROOT_PASSWORD" <<EOF
     var rootUser = '$MONGO_INITDB_ROOT_USERNAME';
     var rootPassword = '$MONGO_INITDB_ROOT_PASSWORD';
     var admin = db.getSiblingDB('admin');
     admin.auth(rootUser, rootPassword);
-    var user = '$MONGO_INITDB_USERNAME';
-    var passwd = '$MONGO_INITDB_PASSWORD';
-
-    db.createUser({
-      user: user,
-      pwd: passwd,
-      roles: ["readWrite"]
-    });
 EOF

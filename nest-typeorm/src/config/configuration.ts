@@ -16,4 +16,6 @@ export default () => ({
     entities: ['dist/**/*.entity{.ts,.js}'],
     migrations: ['dist/migrations/*.js'],
   },
+  // mongodb://baba:123@localhost:27017/<db_name>?authMechanism=DEFAULT&authSource=admin
+  mongo_db: `mongodb://${process.env.DB_MONGO_USERNAME}:${process.env.DB_MONGO_PASSWORD}@${process.env.DB_MONGO_HOST}:${process.env.DB_MONGO_PORT}/products?authMechanism=DEFAULT&authSource=${process.env.DB_MONGO_AUTH_SOURCE}`,
 });
