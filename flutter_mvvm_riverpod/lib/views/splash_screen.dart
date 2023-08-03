@@ -51,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
         ? 'You are connected to Mobile Network'
         : 'You are connected to Wifi Network'
       : 'You have no internet';
-    final color = hasInternet ? Colors.green : Colors.red;
+    // final color = hasInternet ? Colors.green : Colors.red;
     print(message);
   } 
 }

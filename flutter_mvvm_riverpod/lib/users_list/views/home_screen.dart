@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mvvm_riverpod/components/app_error.dart';
 import 'package:flutter_mvvm_riverpod/components/app_loading.dart';
 import 'package:flutter_mvvm_riverpod/components/users_list_row.dart';
 import 'package:flutter_mvvm_riverpod/users_list/models/users_model.dart';
