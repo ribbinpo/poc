@@ -1,3 +1,6 @@
 [submodule "basic_foundry/lib/forge-std"]
 	path = basic_foundry/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "basic_foundry/lib/openzeppelin-contracts"]
+	path = basic_foundry/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
