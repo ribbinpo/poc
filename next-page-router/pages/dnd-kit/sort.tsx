@@ -15,6 +15,7 @@ export const ScrollContainer = () => (
       margin: "200px auto 0",
       overflow: "auto",
     }}
+    className="bg-white"
   >
     <Sortable />
   </div>
