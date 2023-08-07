@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@axecute-official/axecute-sdk": "^1.0.0",
     "@axelar-network/axelarjs-sdk": "^0.13.5",
     "@dnd-kit/core": "^6.0.8",
     "@dnd-kit/sortable": "^7.0.2",
