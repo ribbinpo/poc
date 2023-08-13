@@ -7,7 +7,10 @@ class AddUserScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    UsersViewModel usersViewModel = ref.read<UsersViewModel>(usersViewModelProvider.notifier);
+    bool toggleIcon = false;
+    String message = '';
+    UsersViewModel usersViewModel =
+        ref.read<UsersViewModel>(usersViewModelProvider.notifier);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Users'),
@@ -39,9 +42,44 @@ class AddUserScreen extends ConsumerWidget {
                 usersViewModel.addingUser.email = val;
               },
             ),
+            TextButton(onPressed: () => show(context, toggleIcon, message), child: const Text('a'))
           ],
         ),
       ),
     );
+  }
+
+  Future show(BuildContext context, bool toggleIcon, String message) {
+    return showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return Container(
+                color: Colors.blue,
+                child: Column(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          toggleIcon = !toggleIcon;
+                          message = 'aaaa';
+                        });
+                      },
+                      icon: Icon(toggleIcon
+                          ? Icons.check_box
+                          : Icons.check_box_outline_blank),
+                    ),
+                    test(message),
+                  ],
+                ),
+              );
+            },
+          );
+        });
+  }
+
+  Widget test(String message) {
+    return Text(message);
   }
 }
