@@ -58,7 +58,7 @@ export default function Home() {
     // Failed
     // 0x4d3874bbca0dbfceb7690c9efd0d9bebe3d38dcf09b71ab8e97733c6ca879aed
     const txHash: string =
-      "0x4d3874bbca0dbfceb7690c9efd0d9bebe3d38dcf09b71ab8e97733c6ca879aed";
+      "0xb1d77f9f91b026b9f32d41a94d69dde8731e75f2d3132902c81ec7b369a0318c";
     const txStatus: GMPStatusResponse =
       await axelarRecovery.queryTransactionStatus(txHash);
     console.log(txStatus);
