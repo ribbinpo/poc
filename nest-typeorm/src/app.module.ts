@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ProductsModule } from './products/products.module';
 import { TagsModule } from './tags/tags.module';
 import configuration from './config/configuration';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import configuration from './config/configuration';
     DatabaseModule,
     ProductsModule,
     TagsModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
