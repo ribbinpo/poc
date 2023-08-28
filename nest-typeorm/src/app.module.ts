@@ -7,6 +7,7 @@ import { ProductsModule } from './products/products.module';
 import { TagsModule } from './tags/tags.module';
 import configuration from './config/configuration';
 import { EventsModule } from './events/events.module';
+import { ChatsModule } from './chats/chats.module';
 
 @Module({
   imports: [
@@ -16,10 +17,11 @@ import { EventsModule } from './events/events.module';
       envFilePath: ['.env'],
       load: [configuration],
     }),
-    DatabaseModule,
-    ProductsModule,
-    TagsModule,
+    // DatabaseModule,
+    // ProductsModule,
+    // TagsModule,
     EventsModule,
+    ChatsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
