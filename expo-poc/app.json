@@ -17,16 +17,18 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.example.expo-poc",
+      "bundleIdentifier": "com.example.expopoc",
       "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff",
-        "package": "com.example.expo-poc",
+        "package": "com.example.expopoc",
         "googleServicesFile": "./google-services.json"
-      }
+      },
+      "package": "com.example.expopoc",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "bundler": "metro",

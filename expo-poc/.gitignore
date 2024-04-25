@@ -42,3 +42,8 @@ expo-env.d.ts
 
 # firebase credentials
 GoogleService-Info.plist
+google-services.json
+
+# Build folder
+android/
+ios/
